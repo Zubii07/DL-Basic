@@ -1,4 +1,4 @@
-# 🧠 Deep Learning Basics: ANN + Backpropagation + Gradient Descent
+# 🧠 Deep Learning Basics: ANN + Backpropagation + Gradient Descent + Regularization
 
 This repository covers foundational deep learning concepts through three core projects and hands-on code using only Python, NumPy, and scikit-learn.
 

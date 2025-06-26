@@ -1,93 +1,112 @@
-# 🧠 Deep Learning Basics: Feedforward Neural Network + Manual Backpropagation
+# 🧠 Deep Learning Basics: ANN + Backpropagation + Gradient Descent
 
-This repository demonstrates foundational deep learning concepts with two hands-on projects:
-
-1. **Handwritten Digit Recognition** using a feedforward neural network (MLP)
-2. **Manual Backpropagation** from scratch using NumPy — applied to a mini regression dataset
-
-Both projects build intuition around how neural networks operate and how weights are adjusted using backpropagation.
+This repository covers foundational deep learning concepts through three core projects and hands-on code using only Python, NumPy, and scikit-learn.
 
 ---
 
-## 🧠 Core Concepts
+## 📚 Topics Covered
 
 | **Concept**                         | **Definition**                                                                                                                                                      |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **ANN (Artificial Neural Network)** | A model inspired by the human brain, composed of layers of interconnected nodes (neurons). It learns patterns from data to make predictions or classifications.     |
-| └─ **Neurons**                      | The basic computing unit in a neural network. It receives inputs, applies weights and bias, and passes the result through an activation function to produce output. |
-| └─ **Activation Functions**         | Functions like ReLU, Sigmoid, or Tanh that introduce non-linearity, enabling the network to learn complex patterns.                                                 |
-| └─ **Backpropagation**              | The training algorithm that adjusts weights by propagating the error backward through the network using gradients (partial derivatives).                            |
-| **MLP (Multilayer Perceptron)**     | A type of feedforward ANN with one or more hidden layers. Each layer is fully connected to the next. It's the foundation of deep learning models.                   |
-| **Feedforward Neural Network**      | A neural network where information flows only in one direction: input → hidden layer(s) → output. It has no loops or cycles.                                        |
+| └─ **Neurons**                      | The basic computing unit that processes input data using weights and biases.                                                                                        |
+| └─ **Activation Functions**         | Introduce non-linearity (e.g., ReLU, Sigmoid, Tanh), enabling neural networks to learn complex functions.                                                           |
+| **Feedforward Neural Network**      | A neural network where data flows in one direction: input → hidden layer(s) → output. No loops or recursion.                                                        |
+| **MLP (Multilayer Perceptron)**     | A feedforward ANN with one or more hidden layers, commonly used in classification and regression tasks.                                                             |
+| **Backpropagation**                | Training algorithm that computes gradients of the loss function with respect to weights using the chain rule. It updates weights via gradient descent.              |
+| **Gradient Descent**                | Optimization algorithm to minimize a loss function by iteratively updating weights in the opposite direction of the gradient.                                       |
 
 ---
 
-## 📁 Project 1: Handwritten Digit Recognition using Feedforward Neural Network (MLP)
+## 📁 Project 1: Digit Recognition using Feedforward Neural Network
 
 ### 📊 Dataset
-- **Source**: `sklearn.datasets.load_digits()`
-- **Samples**: 1,797
-- **Classes**: 10 (digits 0–9)
-- **Input**: 8×8 grayscale images (flattened to 64 features)
+- `sklearn.datasets.load_digits()`
+- 1,797 grayscale images (8×8 pixels) of digits (0–9)
+- Features: 64 pixels per image
 
-### 📌 Features
+### 🔧 Features
 - Preprocessing and normalization
-- Training with `MLPClassifier` (sklearn)
-- Accuracy scoring
-- Visualization of predictions
+- Model training using `MLPClassifier` from scikit-learn
+- Accuracy evaluation
+- Result visualization
 
-### 📦 Technologies
+### 📦 Tech Stack
 - Python
-- Scikit-learn
+- scikit-learn
 - Matplotlib
-- NumPy
 
 ---
 
-## 📁 Project 2: Manual Backpropagation (Regression Task)
+## 📁 Project 2: Manual Backpropagation (Regression)
 
-### 🧪 Problem
-Predict salary (`LPA`) using two input features: **CGPA** and **Profile Score**.
+### 💼 Problem
+Predict salary (LPA) based on **CGPA** and **Profile Score** using a manually coded neural network in NumPy.
 
-### 📊 Sample Data
+| CGPA | Profile_Score | LPA |
+|------|----------------|-----|
+| 8    | 8              | 4   |
+| 7    | 9              | 5   |
+| 6    | 10             | 6   |
+| 5    | 12             | 7   |
 
-| CGPA | Profile_Score | LPA (Target) |
-|------|----------------|--------------|
-| 8    | 8              | 4            |
-| 7    | 9              | 5            |
-| 6    | 10             | 6            |
-| 5    | 12             | 7            |
+### ⚙️ Architecture
+- Input: 2 neurons
+- Hidden Layer: 2 neurons (no activation)
+- Output: 1 neuron (linear output)
 
-### ⚙️ Model Architecture
-- **Input layer**: 2 neurons
-- **Hidden layer**: 2 neurons
-- **Output layer**: 1 neuron
-- No activation functions used (pure linear layers)
-
-### 🧮 Training Flow
-- Manual forward propagation using matrix dot products
-- Manual loss computation (mean squared error)
-- Manually derived gradient updates using backpropagation logic
-- Trained over multiple epochs to minimize loss
-
-### ✨ Highlights
-- All implemented with **NumPy only**
-- Great for educational use
-- Shows how weight adjustments happen mathematically
+### 🔁 Training Logic
+- Manual forward pass (dot products)
+- Mean Squared Error loss
+- Backpropagation to compute gradients
+- Weight updates via Gradient Descent (coded from scratch)
 
 ---
 
-## ✅ What You’ll Learn
-- How data flows through a neural network (forward pass)
-- How errors are measured and propagated backward (backpropagation)
-- The effect of weight updates across epochs
-- Real-world application of ANN in both classification and regression
+## 📁 Project 3: Gradient Descent Explained & Implemented
+
+### 🎯 Goal
+Understand how gradient descent works and how to implement it from scratch and with `scikit-learn`.
+
+### ✅ Covered Topics
+- Cost Function: Mean Squared Error (MSE)
+- Derivatives of weights and bias
+- Manual gradient computation
+- Weight updates over epochs
+
+### 💻 Implementations
+- ✅ Pure Python & NumPy
+- ✅ `SGDRegressor` from `sklearn` with scaling and reverse-transform logic
+
+### 🔍 Key Insight
+> Feature scaling affects the learned parameters. To interpret them in the original input space, reverse the scaling:
+> - \( w_{\text{orig}} = \frac{w}{\text{std}} \)
+> - \( b_{\text{orig}} = b - \frac{w \cdot \mu}{\text{std}} \)
+
+---
+
+## 🎓 What You'll Learn
+
+- How neurons work internally
+- How networks learn through forward and backward passes
+- Gradient descent — the core training loop
+- Visual intuition behind optimization
+- Practical and mathematical understanding of neural network training
+
+---
+
+## 🧠 Ideal For
+- Beginners in Deep Learning
+- Students wanting hands-on + mathematical insight
+- Anyone curious how learning happens inside a neural network
 
 ---
 
 ## 🧑‍💻 Author
-Built with ❤️ for learning by Me
+
+Built with ❤️ for self-paced learning by **Me**
 
 ---
 
 ## 🙌 Happy Learning!
+
